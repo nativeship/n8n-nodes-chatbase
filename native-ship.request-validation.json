@@ -1,0 +1,5914 @@
+{
+  "schemaVersion": 1,
+  "fixtures": [
+    {
+      "operationId": "chatWithAgent",
+      "method": "POST",
+      "path": "/agents/{agentId}/chat",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "conversationId",
+            "inputName": "conversationId",
+            "sample": "value/id",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "message",
+            "inputName": "message",
+            "sample": "Hello, how can you help me?",
+            "example": "Hello, how can you help me?",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "stream",
+            "inputName": "stream",
+            "sample": true,
+            "default": true,
+            "type": "boolean",
+            "required": false
+          },
+          {
+            "name": "userId",
+            "inputName": "userId",
+            "sample": "value-id",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "data",
+            "type": "object"
+          }
+        ],
+        "simplifiedFields": [
+          "data"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "402",
+          "title": "The account's message credit balance is zero. Upgrade the plan or wait for credits to reset at the next billing cycle."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "chatWithAgent",
+        "method": "POST",
+        "path": "/agents/{agentId}/chat",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "POST",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/chat",
+          "query": [],
+          "body": [
+            {
+              "name": "conversationId",
+              "source": "additionalFields"
+            },
+            {
+              "name": "message",
+              "source": "additionalFields"
+            },
+            {
+              "name": "stream",
+              "source": "additionalFields"
+            },
+            {
+              "name": "userId",
+              "source": "additionalFields"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "data",
+              "type": "object"
+            }
+          ],
+          "simplifiedFields": [
+            "data"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "402",
+            "title": "The account's message credit balance is zero. Upgrade the plan or wait for credits to reset at the next billing cycle."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "cloneAgent",
+      "method": "POST",
+      "path": "/agents/{agentId}/clone",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": []
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "pendingSteps",
+            "type": "array"
+          }
+        ],
+        "simplifiedFields": [
+          "id",
+          "pendingSteps"
+        ]
+      },
+      "errors": [
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "cloneAgent",
+        "method": "POST",
+        "path": "/agents/{agentId}/clone",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "POST",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/clone",
+          "query": [],
+          "body": [],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "pendingSteps",
+              "type": "array"
+            }
+          ],
+          "simplifiedFields": [
+            "id",
+            "pendingSteps"
+          ]
+        },
+        "errors": [
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "createAgent",
+      "method": "POST",
+      "path": "/agents",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "instructions",
+            "inputName": "instructions",
+            "sample": "value/id",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "model",
+            "inputName": "model",
+            "sample": "gpt-5.6-terra",
+            "example": "gpt-5.6-terra",
+            "enum": [
+              "gpt-4o-mini",
+              "gpt-oss-120b",
+              "gpt-oss-20b",
+              "gpt-5.2",
+              "gpt-5.5",
+              "gpt-5.6-terra",
+              "gpt-6.1-sol",
+              "gpt-6-luna",
+              "gpt-5-mini",
+              "gpt-5-nano",
+              "claude-opus-5-5",
+              "claude-sonnet-5-5",
+              "claude-opus-4-8",
+              "claude-opus-4-7",
+              "claude-opus-4-6",
+              "claude-sonnet-4-6",
+              "claude-opus-4-5",
+              "claude-haiku-4-5",
+              "claude-sonnet-4-5",
+              "gemini-2.5-pro",
+              "gemini-3-flash",
+              "gemini-3.1-flash-lite",
+              "gemini-3.1-pro",
+              "gemini-3.5-flash",
+              "gemini-3.5-flash-lite",
+              "gemini-3.6-flash",
+              "grok-3",
+              "grok-3-mini",
+              "grok-4",
+              "DeepSeek-V3.1",
+              "DeepSeek-R1",
+              "DeepSeek-V4-Flash",
+              "DeepSeek-V4.1-Flash",
+              "Llama-4-Scout-17B-16E-Instruct",
+              "Llama-4-Maverick-17B-128E-Instruct-FP8",
+              "kimi-k2.5",
+              "mistral-medium-3.5",
+              "mistral-small-2603",
+              "glm-5.2",
+              "glm-5.3-flash",
+              "auto"
+            ],
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "name",
+            "inputName": "name",
+            "sample": "Support Bot",
+            "example": "Support Bot",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "temp",
+            "inputName": "temp",
+            "sample": 0,
+            "example": 0,
+            "type": "number",
+            "required": false
+          },
+          {
+            "name": "url",
+            "inputName": "url",
+            "sample": "https://example.com",
+            "example": "https://example.com",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "visibility",
+            "inputName": "visibility",
+            "sample": "public",
+            "enum": [
+              "public",
+              "private"
+            ],
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "pendingSteps",
+            "type": "array"
+          }
+        ],
+        "simplifiedFields": [
+          "id",
+          "pendingSteps"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "createAgent",
+        "method": "POST",
+        "path": "/agents",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "POST",
+          "url": "=/agents",
+          "query": [],
+          "body": [
+            {
+              "name": "instructions",
+              "source": "additionalFields"
+            },
+            {
+              "name": "model",
+              "source": "additionalFields"
+            },
+            {
+              "name": "name",
+              "source": "parameter"
+            },
+            {
+              "name": "temp",
+              "source": "additionalFields"
+            },
+            {
+              "name": "url",
+              "source": "additionalFields"
+            },
+            {
+              "name": "visibility",
+              "source": "additionalFields"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "pendingSteps",
+              "type": "array"
+            }
+          ],
+          "simplifiedFields": [
+            "id",
+            "pendingSteps"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "createVoiceSession",
+      "method": "POST",
+      "path": "/agents/{agentId}/voice/sessions",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "conversationId",
+            "inputName": "conversationId",
+            "sample": "00000000-0000-4000-8000-000000000000",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "timezone",
+            "inputName": "timezone",
+            "sample": "UTC",
+            "default": "UTC",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "userId",
+            "inputName": "userId",
+            "sample": "value-id",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "data",
+            "type": "object"
+          }
+        ],
+        "simplifiedFields": [
+          "data"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "createVoiceSession",
+        "method": "POST",
+        "path": "/agents/{agentId}/voice/sessions",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "POST",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/voice/sessions",
+          "query": [],
+          "body": [
+            {
+              "name": "conversationId",
+              "source": "additionalFields"
+            },
+            {
+              "name": "timezone",
+              "source": "additionalFields"
+            },
+            {
+              "name": "userId",
+              "source": "additionalFields"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "data",
+              "type": "object"
+            }
+          ],
+          "simplifiedFields": [
+            "data"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "deleteAgent",
+      "method": "DELETE",
+      "path": "/agents/{agentId}",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": []
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "success",
+            "type": "boolean"
+          }
+        ],
+        "simplifiedFields": [
+          "success"
+        ]
+      },
+      "errors": [
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "deleteAgent",
+        "method": "DELETE",
+        "path": "/agents/{agentId}",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "DELETE",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}",
+          "query": [],
+          "body": [],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "success",
+              "type": "boolean"
+            }
+          ],
+          "simplifiedFields": [
+            "success"
+          ]
+        },
+        "errors": [
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "retryMessage",
+      "method": "POST",
+      "path": "/agents/{agentId}/conversations/{conversationId}/retry",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        },
+        {
+          "name": "conversationId",
+          "inputName": "conversationId",
+          "sample": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+          "example": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "messageId",
+            "inputName": "messageId",
+            "sample": "msg-abc123",
+            "example": "msg-abc123",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "stream",
+            "inputName": "stream",
+            "sample": true,
+            "default": true,
+            "type": "boolean",
+            "required": false
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "data",
+            "type": "object"
+          }
+        ],
+        "simplifiedFields": [
+          "data"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "402",
+          "title": "The account's message credit balance is zero. Upgrade the plan or wait for credits to reset at the next billing cycle."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "The provided `messageId` does not exist in the conversation."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "retryMessage",
+        "method": "POST",
+        "path": "/agents/{agentId}/conversations/{conversationId}/retry",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "POST",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/conversations/{{$parameter[\"conversationId\"]}}/retry",
+          "query": [],
+          "body": [
+            {
+              "name": "messageId",
+              "source": "parameter"
+            },
+            {
+              "name": "stream",
+              "source": "additionalFields"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "data",
+              "type": "object"
+            }
+          ],
+          "simplifiedFields": [
+            "data"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "402",
+            "title": "The account's message credit balance is zero. Upgrade the plan or wait for credits to reset at the next billing cycle."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "The provided `messageId` does not exist in the conversation."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "submitToolResult",
+      "method": "POST",
+      "path": "/agents/{agentId}/conversations/{conversationId}/tool-result",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        },
+        {
+          "name": "conversationId",
+          "inputName": "conversationId",
+          "sample": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+          "example": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "output",
+            "inputName": "output",
+            "sample": "value/id",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "toolCallId",
+            "inputName": "toolCallId",
+            "sample": "value/id",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "data",
+            "type": "object"
+          }
+        ],
+        "simplifiedFields": [
+          "data"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No pending tool call matches the provided `toolCallId`. It may have expired or already been resolved."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "submitToolResult",
+        "method": "POST",
+        "path": "/agents/{agentId}/conversations/{conversationId}/tool-result",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "POST",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/conversations/{{$parameter[\"conversationId\"]}}/tool-result",
+          "query": [],
+          "body": [
+            {
+              "name": "output",
+              "source": "additionalFields"
+            },
+            {
+              "name": "toolCallId",
+              "source": "parameter"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "data",
+              "type": "object"
+            }
+          ],
+          "simplifiedFields": [
+            "data"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No pending tool call matches the provided `toolCallId`. It may have expired or already been resolved."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "trainAgent",
+      "method": "POST",
+      "path": "/agents/{agentId}/train",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": []
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "deprecated",
+            "type": "boolean"
+          },
+          {
+            "name": "message",
+            "type": "string"
+          },
+          {
+            "name": "success",
+            "type": "boolean"
+          }
+        ],
+        "simplifiedFields": [
+          "deprecated",
+          "message",
+          "success"
+        ]
+      },
+      "errors": [
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "trainAgent",
+        "method": "POST",
+        "path": "/agents/{agentId}/train",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "POST",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/train",
+          "query": [],
+          "body": [],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "deprecated",
+              "type": "boolean"
+            },
+            {
+              "name": "message",
+              "type": "string"
+            },
+            {
+              "name": "success",
+              "type": "boolean"
+            }
+          ],
+          "simplifiedFields": [
+            "deprecated",
+            "message",
+            "success"
+          ]
+        },
+        "errors": [
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "updateAgent",
+      "method": "PUT",
+      "path": "/agents/{agentId}",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "allowedDomains",
+            "inputName": "allowedDomains",
+            "sample": [
+              "value/id"
+            ],
+            "type": "array",
+            "required": false
+          },
+          {
+            "name": "blockedCountries",
+            "inputName": "blockedCountries",
+            "sample": [
+              "RU",
+              "KP"
+            ],
+            "example": [
+              "RU",
+              "KP"
+            ],
+            "type": "array",
+            "required": false
+          },
+          {
+            "name": "channelInstructions",
+            "inputName": "channelInstructions",
+            "sample": {},
+            "type": "object",
+            "required": false
+          },
+          {
+            "name": "creditLimit",
+            "inputName": "creditLimit",
+            "sample": 2,
+            "type": "integer",
+            "required": false
+          },
+          {
+            "name": "initialMessages",
+            "inputName": "initialMessages",
+            "sample": [
+              "value/id"
+            ],
+            "type": "array",
+            "required": false
+          },
+          {
+            "name": "instructions",
+            "inputName": "instructions",
+            "sample": "value/id",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "ipRateLimits",
+            "inputName": "ipRateLimits",
+            "sample": {},
+            "type": "object",
+            "required": false
+          },
+          {
+            "name": "model",
+            "inputName": "model",
+            "sample": "gpt-5.6-terra",
+            "example": "gpt-5.6-terra",
+            "enum": [
+              "gpt-4o-mini",
+              "gpt-oss-120b",
+              "gpt-oss-20b",
+              "gpt-5.2",
+              "gpt-5.5",
+              "gpt-5.6-terra",
+              "gpt-6.1-sol",
+              "gpt-6-luna",
+              "gpt-5-mini",
+              "gpt-5-nano",
+              "claude-opus-5-5",
+              "claude-sonnet-5-5",
+              "claude-opus-4-8",
+              "claude-opus-4-7",
+              "claude-opus-4-6",
+              "claude-sonnet-4-6",
+              "claude-opus-4-5",
+              "claude-haiku-4-5",
+              "claude-sonnet-4-5",
+              "gemini-2.5-pro",
+              "gemini-3-flash",
+              "gemini-3.1-flash-lite",
+              "gemini-3.1-pro",
+              "gemini-3.5-flash",
+              "gemini-3.5-flash-lite",
+              "gemini-3.6-flash",
+              "grok-3",
+              "grok-3-mini",
+              "grok-4",
+              "DeepSeek-V3.1",
+              "DeepSeek-R1",
+              "DeepSeek-V4-Flash",
+              "DeepSeek-V4.1-Flash",
+              "Llama-4-Scout-17B-16E-Instruct",
+              "Llama-4-Maverick-17B-128E-Instruct-FP8",
+              "kimi-k2.5",
+              "mistral-medium-3.5",
+              "mistral-small-2603",
+              "glm-5.2",
+              "glm-5.3-flash",
+              "auto"
+            ],
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "name",
+            "inputName": "name",
+            "sample": "value/id",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "notificationsSettings",
+            "inputName": "notificationsSettings",
+            "sample": {},
+            "type": "object",
+            "required": false
+          },
+          {
+            "name": "spamSettings",
+            "inputName": "spamSettings",
+            "sample": {
+              "enabled": true,
+              "prompt": "value/id"
+            },
+            "type": "object",
+            "required": false
+          },
+          {
+            "name": "suggestedMessages",
+            "inputName": "suggestedMessages",
+            "sample": [
+              {
+                "schemaAlternative": "alternative1",
+                "value": {
+                  "order": 2.5,
+                  "text": "value/id",
+                  "type": "single"
+                }
+              }
+            ],
+            "type": "array",
+            "required": false
+          },
+          {
+            "name": "temp",
+            "inputName": "temp",
+            "sample": 1,
+            "type": "number",
+            "required": false
+          },
+          {
+            "name": "visibility",
+            "inputName": "visibility",
+            "sample": "public",
+            "enum": [
+              "public",
+              "private"
+            ],
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "voiceSettings",
+            "inputName": "voiceSettings",
+            "sample": {},
+            "type": "object",
+            "required": false
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "success",
+            "type": "boolean"
+          }
+        ],
+        "simplifiedFields": [
+          "success"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "updateAgent",
+        "method": "PUT",
+        "path": "/agents/{agentId}",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "PUT",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}",
+          "query": [],
+          "body": [
+            {
+              "name": "allowedDomains",
+              "source": "additionalFields"
+            },
+            {
+              "name": "blockedCountries",
+              "source": "additionalFields"
+            },
+            {
+              "name": "channelInstructions",
+              "source": "additionalFields"
+            },
+            {
+              "name": "creditLimit",
+              "source": "additionalFields"
+            },
+            {
+              "name": "initialMessages",
+              "source": "additionalFields"
+            },
+            {
+              "name": "instructions",
+              "source": "additionalFields"
+            },
+            {
+              "name": "ipRateLimits",
+              "source": "additionalFields"
+            },
+            {
+              "name": "model",
+              "source": "additionalFields"
+            },
+            {
+              "name": "name",
+              "source": "additionalFields"
+            },
+            {
+              "name": "notificationsSettings",
+              "source": "additionalFields"
+            },
+            {
+              "name": "spamSettings",
+              "source": "additionalFields"
+            },
+            {
+              "name": "suggestedMessages",
+              "source": "additionalFields"
+            },
+            {
+              "name": "temp",
+              "source": "additionalFields"
+            },
+            {
+              "name": "visibility",
+              "source": "additionalFields"
+            },
+            {
+              "name": "voiceSettings",
+              "source": "additionalFields"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "success",
+              "type": "boolean"
+            }
+          ],
+          "simplifiedFields": [
+            "success"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": [
+          "advanced parameter allowedDomains",
+          "advanced parameter blockedCountries",
+          "advanced parameter channelInstructions",
+          "advanced parameter initialMessages",
+          "advanced parameter ipRateLimits",
+          "advanced parameter notificationsSettings",
+          "advanced parameter spamSettings",
+          "advanced parameter suggestedMessages",
+          "advanced parameter voiceSettings"
+        ]
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "updateAgentAutoRetrain",
+      "method": "PUT",
+      "path": "/agents/{agentId}/auto-retrain",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "enabled",
+            "inputName": "enabled",
+            "sample": true,
+            "type": "boolean",
+            "required": true
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "success",
+            "type": "boolean"
+          }
+        ],
+        "simplifiedFields": [
+          "success"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+        },
+        {
+          "status": "409",
+          "title": "Auto-retrain requires the agent to have completed at least one training run."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "updateAgentAutoRetrain",
+        "method": "PUT",
+        "path": "/agents/{agentId}/auto-retrain",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "PUT",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/auto-retrain",
+          "query": [],
+          "body": [
+            {
+              "name": "enabled",
+              "source": "parameter"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "success",
+              "type": "boolean"
+            }
+          ],
+          "simplifiedFields": [
+            "success"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+          },
+          {
+            "status": "409",
+            "title": "Auto-retrain requires the agent to have completed at least one training run."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "updateAgentStyles",
+      "method": "PUT",
+      "path": "/agents/{agentId}/styles",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "styles",
+            "inputName": "styles",
+            "sample": {},
+            "type": "object",
+            "required": true
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "success",
+            "type": "boolean"
+          }
+        ],
+        "simplifiedFields": [
+          "success"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "updateAgentStyles",
+        "method": "PUT",
+        "path": "/agents/{agentId}/styles",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "PUT",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/styles",
+          "query": [],
+          "body": [
+            {
+              "name": "styles",
+              "source": "parameter"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "success",
+              "type": "boolean"
+            }
+          ],
+          "simplifiedFields": [
+            "success"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": [
+          "advanced parameter styles"
+        ]
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "updateConversation",
+      "method": "PATCH",
+      "path": "/agents/{agentId}/conversations/{conversationId}",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        },
+        {
+          "name": "conversationId",
+          "inputName": "conversationId",
+          "sample": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+          "example": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "paused",
+            "inputName": "paused",
+            "sample": true,
+            "type": "boolean",
+            "required": true
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "data",
+            "type": "object"
+          }
+        ],
+        "simplifiedFields": [
+          "data"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "updateConversation",
+        "method": "PATCH",
+        "path": "/agents/{agentId}/conversations/{conversationId}",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "PATCH",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/conversations/{{$parameter[\"conversationId\"]}}",
+          "query": [],
+          "body": [
+            {
+              "name": "paused",
+              "source": "parameter"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "data",
+              "type": "object"
+            }
+          ],
+          "simplifiedFields": [
+            "data"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "updateMessageFeedback",
+      "method": "PATCH",
+      "path": "/agents/{agentId}/conversations/{conversationId}/messages/{messageId}/feedback",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        },
+        {
+          "name": "conversationId",
+          "inputName": "conversationId",
+          "sample": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+          "example": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        },
+        {
+          "name": "messageId",
+          "inputName": "messageId",
+          "sample": "value/id",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "feedback",
+            "inputName": "feedback",
+            "sample": "positive",
+            "enum": [
+              "positive",
+              "negative",
+              null
+            ],
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "data",
+            "type": "object"
+          }
+        ],
+        "simplifiedFields": [
+          "data"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No message matches the provided ID in this conversation. Verify the message ID."
+        },
+        {
+          "status": "422",
+          "title": "The specified message is not an assistant message. Metadata updates are only supported on assistant text messages."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "updateMessageFeedback",
+        "method": "PATCH",
+        "path": "/agents/{agentId}/conversations/{conversationId}/messages/{messageId}/feedback",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "PATCH",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/conversations/{{$parameter[\"conversationId\"]}}/messages/{{$parameter[\"messageId\"]}}/feedback",
+          "query": [],
+          "body": [
+            {
+              "name": "feedback",
+              "source": "parameter"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "data",
+              "type": "object"
+            }
+          ],
+          "simplifiedFields": [
+            "data"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No message matches the provided ID in this conversation. Verify the message ID."
+          },
+          {
+            "status": "422",
+            "title": "The specified message is not an assistant message. Metadata updates are only supported on assistant text messages."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "createTicket",
+      "method": "POST",
+      "path": "/agents/{agentId}/helpdesk/tickets",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "assigneeEmail",
+            "inputName": "assigneeEmail",
+            "sample": "sam@example.com",
+            "example": "sam@example.com",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "assigneeId",
+            "inputName": "assigneeId",
+            "sample": "00000000-0000-4000-8000-000000000000",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "customer",
+            "inputName": "customer",
+            "sample": {
+              "email": "jane@example.com"
+            },
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "description",
+            "inputName": "description",
+            "sample": "Customer cannot export orders.",
+            "example": "Customer cannot export orders.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "priority",
+            "inputName": "priority",
+            "sample": "high",
+            "example": "high",
+            "enum": [
+              "none",
+              "low",
+              "normal",
+              "high",
+              "urgent"
+            ],
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "statusCategory",
+            "inputName": "statusCategory",
+            "sample": "new",
+            "example": "new",
+            "enum": [
+              "new",
+              "on_you",
+              "on_customer",
+              "on_hold",
+              "closed",
+              "cancelled"
+            ],
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "statusId",
+            "inputName": "statusId",
+            "sample": "00000000-0000-4000-8000-000000000000",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "subject",
+            "inputName": "subject",
+            "sample": "Export failing with 500",
+            "example": "Export failing with 500",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "teamId",
+            "inputName": "teamId",
+            "sample": "00000000-0000-4000-8000-000000000000",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "assigneeId",
+            "type": "string"
+          },
+          {
+            "name": "channel",
+            "type": "string"
+          },
+          {
+            "name": "conversationId",
+            "type": "string"
+          },
+          {
+            "name": "createdAt",
+            "type": "string"
+          },
+          {
+            "name": "customer",
+            "type": "object"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "lastMessageAt",
+            "type": "string"
+          },
+          {
+            "name": "metadata",
+            "type": "object"
+          },
+          {
+            "name": "priority",
+            "type": "string"
+          },
+          {
+            "name": "statusCategory",
+            "type": "string"
+          },
+          {
+            "name": "statusId",
+            "type": "string"
+          },
+          {
+            "name": "subject",
+            "type": "string"
+          },
+          {
+            "name": "teamId",
+            "type": "string"
+          },
+          {
+            "name": "ticketNumber",
+            "type": "integer"
+          },
+          {
+            "name": "updatedAt",
+            "type": "string"
+          }
+        ],
+        "simplifiedFields": [
+          "description",
+          "createdAt",
+          "updatedAt",
+          "assigneeId",
+          "channel",
+          "conversationId",
+          "lastMessageAt",
+          "priority",
+          "statusCategory",
+          "statusId"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+        },
+        {
+          "status": "422",
+          "title": "`statusId` does not belong to a status for this agent. Discover valid ids via GET /ticket-statuses."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "createTicket",
+        "method": "POST",
+        "path": "/agents/{agentId}/helpdesk/tickets",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "POST",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/helpdesk/tickets",
+          "query": [],
+          "body": [
+            {
+              "name": "assigneeEmail",
+              "source": "additionalFields"
+            },
+            {
+              "name": "assigneeId",
+              "source": "additionalFields"
+            },
+            {
+              "name": "customer",
+              "source": "parameter"
+            },
+            {
+              "name": "description",
+              "source": "parameter"
+            },
+            {
+              "name": "priority",
+              "source": "additionalFields"
+            },
+            {
+              "name": "statusCategory",
+              "source": "additionalFields"
+            },
+            {
+              "name": "statusId",
+              "source": "additionalFields"
+            },
+            {
+              "name": "subject",
+              "source": "parameter"
+            },
+            {
+              "name": "teamId",
+              "source": "additionalFields"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "assigneeId",
+              "type": "string"
+            },
+            {
+              "name": "channel",
+              "type": "string"
+            },
+            {
+              "name": "conversationId",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "string"
+            },
+            {
+              "name": "customer",
+              "type": "object"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "name": "lastMessageAt",
+              "type": "string"
+            },
+            {
+              "name": "metadata",
+              "type": "object"
+            },
+            {
+              "name": "priority",
+              "type": "string"
+            },
+            {
+              "name": "statusCategory",
+              "type": "string"
+            },
+            {
+              "name": "statusId",
+              "type": "string"
+            },
+            {
+              "name": "subject",
+              "type": "string"
+            },
+            {
+              "name": "teamId",
+              "type": "string"
+            },
+            {
+              "name": "ticketNumber",
+              "type": "integer"
+            },
+            {
+              "name": "updatedAt",
+              "type": "string"
+            }
+          ],
+          "simplifiedFields": [
+            "description",
+            "createdAt",
+            "updatedAt",
+            "assigneeId",
+            "channel",
+            "conversationId",
+            "lastMessageAt",
+            "priority",
+            "statusCategory",
+            "statusId"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+          },
+          {
+            "status": "422",
+            "title": "`statusId` does not belong to a status for this agent. Discover valid ids via GET /ticket-statuses."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          }
+        ],
+        "unsupportedSemantics": [
+          "advanced parameter customer"
+        ]
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "createTicketMessage",
+      "method": "POST",
+      "path": "/agents/{agentId}/helpdesk/tickets/{ticketNumber}/messages",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        },
+        {
+          "name": "ticketNumber",
+          "inputName": "ticketNumber",
+          "sample": 123,
+          "example": 123,
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "authorEmail",
+            "inputName": "authorEmail",
+            "sample": "sam@example.com",
+            "example": "sam@example.com",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "authorId",
+            "inputName": "authorId",
+            "sample": "00000000-0000-4000-8000-000000000000",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "content",
+            "inputName": "content",
+            "sample": "Thanks for reaching out. This is **fixed** now.",
+            "example": "Thanks for reaching out. This is **fixed** now.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "type",
+            "inputName": "type",
+            "sample": "reply",
+            "example": "reply",
+            "enum": [
+              "reply"
+            ],
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "content",
+            "type": "string"
+          },
+          {
+            "name": "contentText",
+            "type": "string"
+          },
+          {
+            "name": "createdAt",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "sender",
+            "type": "object"
+          },
+          {
+            "name": "type",
+            "type": "string"
+          }
+        ],
+        "simplifiedFields": [
+          "content",
+          "contentText",
+          "createdAt",
+          "id",
+          "sender",
+          "type"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No ticket matches the provided ticket number for this agent. Verify the ticket number in the request path."
+        },
+        {
+          "status": "409",
+          "title": "This ticket is linked to a live conversation that has not been taken over from the AI agent, so a human reply cannot be posted. Take over the conversation from the dashboard first."
+        },
+        {
+          "status": "422",
+          "title": "The authorId or authorEmail does not resolve to a member of your account. Authors must be existing team members. Also returned with code `MESSAGE_CONTENT_NOT_RENDERABLE` when the message body renders to empty HTML."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "createTicketMessage",
+        "method": "POST",
+        "path": "/agents/{agentId}/helpdesk/tickets/{ticketNumber}/messages",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "POST",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/helpdesk/tickets/{{$parameter[\"ticketNumber\"]}}/messages",
+          "query": [],
+          "body": [
+            {
+              "name": "authorEmail",
+              "source": "additionalFields"
+            },
+            {
+              "name": "authorId",
+              "source": "additionalFields"
+            },
+            {
+              "name": "content",
+              "source": "parameter"
+            },
+            {
+              "name": "type",
+              "source": "parameter"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "content",
+              "type": "string"
+            },
+            {
+              "name": "contentText",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "string"
+            },
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "sender",
+              "type": "object"
+            },
+            {
+              "name": "type",
+              "type": "string"
+            }
+          ],
+          "simplifiedFields": [
+            "content",
+            "contentText",
+            "createdAt",
+            "id",
+            "sender",
+            "type"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No ticket matches the provided ticket number for this agent. Verify the ticket number in the request path."
+          },
+          {
+            "status": "409",
+            "title": "This ticket is linked to a live conversation that has not been taken over from the AI agent, so a human reply cannot be posted. Take over the conversation from the dashboard first."
+          },
+          {
+            "status": "422",
+            "title": "The authorId or authorEmail does not resolve to a member of your account. Authors must be existing team members. Also returned with code `MESSAGE_CONTENT_NOT_RENDERABLE` when the message body renders to empty HTML."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "searchTickets",
+      "method": "POST",
+      "path": "/agents/{agentId}/helpdesk/tickets/search",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "limit",
+            "inputName": "limit",
+            "sample": 20,
+            "default": 20,
+            "example": 20,
+            "type": "integer",
+            "required": false
+          },
+          {
+            "name": "query",
+            "inputName": "query",
+            "sample": "refund not received",
+            "example": "refund not received",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "data",
+            "type": "array"
+          },
+          {
+            "name": "pagination",
+            "type": "object"
+          }
+        ],
+        "simplifiedFields": [
+          "data",
+          "pagination"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "searchTickets",
+        "method": "POST",
+        "path": "/agents/{agentId}/helpdesk/tickets/search",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "POST",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/helpdesk/tickets/search",
+          "query": [],
+          "body": [
+            {
+              "name": "limit",
+              "source": "additionalFields"
+            },
+            {
+              "name": "query",
+              "source": "parameter"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "data",
+              "type": "array"
+            },
+            {
+              "name": "pagination",
+              "type": "object"
+            }
+          ],
+          "simplifiedFields": [
+            "data",
+            "pagination"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "updateTicket",
+      "method": "PATCH",
+      "path": "/agents/{agentId}/helpdesk/tickets/{ticketNumber}",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        },
+        {
+          "name": "ticketNumber",
+          "inputName": "ticketNumber",
+          "sample": 123,
+          "example": 123,
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "agentEmail",
+            "inputName": "agentEmail",
+            "sample": "sam@example.com",
+            "example": "sam@example.com",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "assigneeEmail",
+            "inputName": "assigneeEmail",
+            "sample": "sam@example.com",
+            "example": "sam@example.com",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "assigneeId",
+            "inputName": "assigneeId",
+            "sample": "00000000-0000-4000-8000-000000000000",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "priority",
+            "inputName": "priority",
+            "sample": "urgent",
+            "example": "urgent",
+            "enum": [
+              "none",
+              "low",
+              "normal",
+              "high",
+              "urgent"
+            ],
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "statusCategory",
+            "inputName": "statusCategory",
+            "sample": "on_customer",
+            "example": "on_customer",
+            "enum": [
+              "new",
+              "on_you",
+              "on_customer",
+              "on_hold",
+              "closed",
+              "cancelled"
+            ],
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "statusId",
+            "inputName": "statusId",
+            "sample": "00000000-0000-4000-8000-000000000000",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "teamId",
+            "inputName": "teamId",
+            "sample": "00000000-0000-4000-8000-000000000000",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "assigneeId",
+            "type": "string"
+          },
+          {
+            "name": "channel",
+            "type": "string"
+          },
+          {
+            "name": "conversationId",
+            "type": "string"
+          },
+          {
+            "name": "createdAt",
+            "type": "string"
+          },
+          {
+            "name": "customer",
+            "type": "object"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "lastMessageAt",
+            "type": "string"
+          },
+          {
+            "name": "metadata",
+            "type": "object"
+          },
+          {
+            "name": "priority",
+            "type": "string"
+          },
+          {
+            "name": "statusCategory",
+            "type": "string"
+          },
+          {
+            "name": "statusId",
+            "type": "string"
+          },
+          {
+            "name": "subject",
+            "type": "string"
+          },
+          {
+            "name": "teamId",
+            "type": "string"
+          },
+          {
+            "name": "ticketNumber",
+            "type": "integer"
+          },
+          {
+            "name": "updatedAt",
+            "type": "string"
+          }
+        ],
+        "simplifiedFields": [
+          "description",
+          "createdAt",
+          "updatedAt",
+          "assigneeId",
+          "channel",
+          "conversationId",
+          "lastMessageAt",
+          "priority",
+          "statusCategory",
+          "statusId"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "The agent could not be found (or does not belong to the authenticated account), or the ticket number does not exist for it."
+        },
+        {
+          "status": "422",
+          "title": "The requested statusId/assignee/teamId either doesn't belong to this agent or account, or (for the assignee) was not found."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "updateTicket",
+        "method": "PATCH",
+        "path": "/agents/{agentId}/helpdesk/tickets/{ticketNumber}",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "PATCH",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/helpdesk/tickets/{{$parameter[\"ticketNumber\"]}}",
+          "query": [],
+          "body": [
+            {
+              "name": "agentEmail",
+              "source": "additionalFields"
+            },
+            {
+              "name": "assigneeEmail",
+              "source": "additionalFields"
+            },
+            {
+              "name": "assigneeId",
+              "source": "additionalFields"
+            },
+            {
+              "name": "priority",
+              "source": "additionalFields"
+            },
+            {
+              "name": "statusCategory",
+              "source": "additionalFields"
+            },
+            {
+              "name": "statusId",
+              "source": "additionalFields"
+            },
+            {
+              "name": "teamId",
+              "source": "additionalFields"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "assigneeId",
+              "type": "string"
+            },
+            {
+              "name": "channel",
+              "type": "string"
+            },
+            {
+              "name": "conversationId",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": "string"
+            },
+            {
+              "name": "customer",
+              "type": "object"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "name": "lastMessageAt",
+              "type": "string"
+            },
+            {
+              "name": "metadata",
+              "type": "object"
+            },
+            {
+              "name": "priority",
+              "type": "string"
+            },
+            {
+              "name": "statusCategory",
+              "type": "string"
+            },
+            {
+              "name": "statusId",
+              "type": "string"
+            },
+            {
+              "name": "subject",
+              "type": "string"
+            },
+            {
+              "name": "teamId",
+              "type": "string"
+            },
+            {
+              "name": "ticketNumber",
+              "type": "integer"
+            },
+            {
+              "name": "updatedAt",
+              "type": "string"
+            }
+          ],
+          "simplifiedFields": [
+            "description",
+            "createdAt",
+            "updatedAt",
+            "assigneeId",
+            "channel",
+            "conversationId",
+            "lastMessageAt",
+            "priority",
+            "statusCategory",
+            "statusId"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "The agent could not be found (or does not belong to the authenticated account), or the ticket number does not exist for it."
+          },
+          {
+            "status": "422",
+            "title": "The requested statusId/assignee/teamId either doesn't belong to this agent or account, or (for the assignee) was not found."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "createFileSource",
+      "method": "POST",
+      "path": "/api/v2/agents/{agentId}/sources",
+      "serverId": "operationCreatefilesourceServer1HttpsFilesChatbaseCo",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "multipart/form-data",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "file",
+            "inputName": "file",
+            "sample": "file-content",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "name",
+            "inputName": "name",
+            "sample": "Employee Handbook",
+            "example": "Employee Handbook",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "createdAt",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "metadata",
+            "type": "alternative"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "type": "number"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "type": "string"
+          }
+        ],
+        "simplifiedFields": [
+          "createdAt",
+          "id",
+          "metadata",
+          "name",
+          "size",
+          "status",
+          "type"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "Missing required field, unsupported file type, or a file outside the allowed size range."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present."
+        },
+        {
+          "status": "403",
+          "title": "Standard plan or higher required."
+        },
+        {
+          "status": "404",
+          "title": "Agent not found."
+        },
+        {
+          "status": "422",
+          "title": "Adding this file would exceed the plan storage limit for this agent."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded."
+        },
+        {
+          "status": "500",
+          "title": "Unhandled server error."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "createFileSource",
+        "method": "POST",
+        "path": "/api/v2/agents/{agentId}/sources",
+        "serverId": "operationCreatefilesourceServer1HttpsFilesChatbaseCo",
+        "request": {
+          "method": "POST",
+          "url": "=/api/v2/agents/{{$parameter[\"agentId\"]}}/sources",
+          "query": [],
+          "body": [
+            {
+              "name": "file",
+              "source": "parameter"
+            },
+            {
+              "name": "name",
+              "source": "parameter"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "createdAt",
+              "type": "string"
+            },
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "metadata",
+              "type": "alternative"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "size",
+              "type": "number"
+            },
+            {
+              "name": "status",
+              "type": "string"
+            },
+            {
+              "name": "type",
+              "type": "string"
+            }
+          ],
+          "simplifiedFields": [
+            "createdAt",
+            "id",
+            "metadata",
+            "name",
+            "size",
+            "status",
+            "type"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "Missing required field, unsupported file type, or a file outside the allowed size range."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present."
+          },
+          {
+            "status": "403",
+            "title": "Standard plan or higher required."
+          },
+          {
+            "status": "404",
+            "title": "Agent not found."
+          },
+          {
+            "status": "422",
+            "title": "Adding this file would exceed the plan storage limit for this agent."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded."
+          },
+          {
+            "status": "500",
+            "title": "Unhandled server error."
+          }
+        ],
+        "unsupportedSemantics": [
+          "non-json request content"
+        ]
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "createSource",
+      "method": "POST",
+      "path": "/agents/{agentId}/sources",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "raw",
+        "fields": [
+          {
+            "name": "bodyJson",
+            "inputName": "bodyJson",
+            "sample": {
+              "schemaAlternative": "alternative1",
+              "value": {
+                "content": "value/id",
+                "name": "value/id",
+                "type": "text"
+              }
+            },
+            "type": "alternative",
+            "required": false
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "createdAt",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "metadata",
+            "type": "alternative"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "type": "number"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "type": "string"
+          }
+        ],
+        "simplifiedFields": [
+          "createdAt",
+          "id",
+          "metadata",
+          "name",
+          "size",
+          "status",
+          "type"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+        },
+        {
+          "status": "409",
+          "title": "A parent link with this URL and link type already exists for this agent."
+        },
+        {
+          "status": "422",
+          "title": "Adding or updating this source would exceed the storage limit for your plan. Remove existing sources or upgrade your plan."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "createSource",
+        "method": "POST",
+        "path": "/agents/{agentId}/sources",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "POST",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/sources",
+          "query": [],
+          "body": [
+            {
+              "name": "bodyJson",
+              "source": "additionalFields"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "createdAt",
+              "type": "string"
+            },
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "metadata",
+              "type": "alternative"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "size",
+              "type": "number"
+            },
+            {
+              "name": "status",
+              "type": "string"
+            },
+            {
+              "name": "type",
+              "type": "string"
+            }
+          ],
+          "simplifiedFields": [
+            "createdAt",
+            "id",
+            "metadata",
+            "name",
+            "size",
+            "status",
+            "type"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+          },
+          {
+            "status": "409",
+            "title": "A parent link with this URL and link type already exists for this agent."
+          },
+          {
+            "status": "422",
+            "title": "Adding or updating this source would exceed the storage limit for your plan. Remove existing sources or upgrade your plan."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": [
+          "raw or blocked request body",
+          "advanced parameter bodyJson"
+        ]
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "deleteSource",
+      "method": "DELETE",
+      "path": "/agents/{agentId}/sources/{sourceId}",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        },
+        {
+          "name": "sourceId",
+          "inputName": "sourceId",
+          "sample": "a63a69a5-e7a9-4757-b73b-2041854d435d",
+          "example": "a63a69a5-e7a9-4757-b73b-2041854d435d",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": []
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {},
+      "errors": [
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+        },
+        {
+          "status": "409",
+          "title": "This source is already marked for deletion. Call the restore endpoint to undo the pending deletion first."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "deleteSource",
+        "method": "DELETE",
+        "path": "/agents/{agentId}/sources/{sourceId}",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "DELETE",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/sources/{{$parameter[\"sourceId\"]}}",
+          "query": [],
+          "body": [],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {},
+        "errors": [
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+          },
+          {
+            "status": "409",
+            "title": "This source is already marked for deletion. Call the restore endpoint to undo the pending deletion first."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "getSourcesSummary",
+      "method": "GET",
+      "path": "/agents/{agentId}/sources/summary",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": []
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "files",
+            "type": "object"
+          },
+          {
+            "name": "links",
+            "type": "object"
+          },
+          {
+            "name": "notionPages",
+            "type": "object"
+          },
+          {
+            "name": "qnas",
+            "type": "object"
+          },
+          {
+            "name": "salesforceCases",
+            "type": "object"
+          },
+          {
+            "name": "shouldRetrain",
+            "type": "boolean"
+          },
+          {
+            "name": "texts",
+            "type": "object"
+          },
+          {
+            "name": "zendeskTickets",
+            "type": "object"
+          }
+        ],
+        "simplifiedFields": [
+          "files",
+          "links",
+          "notionPages",
+          "qnas",
+          "salesforceCases",
+          "shouldRetrain",
+          "texts",
+          "zendeskTickets"
+        ]
+      },
+      "errors": [
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "getSourcesSummary",
+        "method": "GET",
+        "path": "/agents/{agentId}/sources/summary",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "GET",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/sources/summary",
+          "query": [],
+          "body": [],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "files",
+              "type": "object"
+            },
+            {
+              "name": "links",
+              "type": "object"
+            },
+            {
+              "name": "notionPages",
+              "type": "object"
+            },
+            {
+              "name": "qnas",
+              "type": "object"
+            },
+            {
+              "name": "salesforceCases",
+              "type": "object"
+            },
+            {
+              "name": "shouldRetrain",
+              "type": "boolean"
+            },
+            {
+              "name": "texts",
+              "type": "object"
+            },
+            {
+              "name": "zendeskTickets",
+              "type": "object"
+            }
+          ],
+          "simplifiedFields": [
+            "files",
+            "links",
+            "notionPages",
+            "qnas",
+            "salesforceCases",
+            "shouldRetrain",
+            "texts",
+            "zendeskTickets"
+          ]
+        },
+        "errors": [
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "restoreSource",
+      "method": "POST",
+      "path": "/agents/{agentId}/sources/{sourceId}/restore",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        },
+        {
+          "name": "sourceId",
+          "inputName": "sourceId",
+          "sample": "a63a69a5-e7a9-4757-b73b-2041854d435d",
+          "example": "a63a69a5-e7a9-4757-b73b-2041854d435d",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": []
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "deprecated",
+            "type": "boolean"
+          },
+          {
+            "name": "message",
+            "type": "string"
+          },
+          {
+            "name": "success",
+            "type": "boolean"
+          }
+        ],
+        "simplifiedFields": [
+          "deprecated",
+          "message",
+          "success"
+        ]
+      },
+      "errors": [
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "restoreSource",
+        "method": "POST",
+        "path": "/agents/{agentId}/sources/{sourceId}/restore",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "POST",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/sources/{{$parameter[\"sourceId\"]}}/restore",
+          "query": [],
+          "body": [],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "deprecated",
+              "type": "boolean"
+            },
+            {
+              "name": "message",
+              "type": "string"
+            },
+            {
+              "name": "success",
+              "type": "boolean"
+            }
+          ],
+          "simplifiedFields": [
+            "deprecated",
+            "message",
+            "success"
+          ]
+        },
+        "errors": [
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "updateFileSource",
+      "method": "PUT",
+      "path": "/api/v2/agents/{agentId}/sources/{sourceId}",
+      "serverId": "operationCreatefilesourceServer1HttpsFilesChatbaseCo",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        },
+        {
+          "name": "sourceId",
+          "inputName": "sourceId",
+          "sample": "a63a69a5-e7a9-4757-b73b-2041854d435d",
+          "example": "a63a69a5-e7a9-4757-b73b-2041854d435d",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "multipart/form-data",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "file",
+            "inputName": "file",
+            "sample": "file-content",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "name",
+            "inputName": "name",
+            "sample": "Employee Handbook v2",
+            "example": "Employee Handbook v2",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "createdAt",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "metadata",
+            "type": "alternative"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "type": "number"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "type": "string"
+          }
+        ],
+        "simplifiedFields": [
+          "createdAt",
+          "id",
+          "metadata",
+          "name",
+          "size",
+          "status",
+          "type"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "No fields provided, unsupported file type, or a file outside the allowed size range."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present."
+        },
+        {
+          "status": "403",
+          "title": "Standard plan or higher required."
+        },
+        {
+          "status": "404",
+          "title": "Agent or source not found."
+        },
+        {
+          "status": "409",
+          "title": "Source is pending deletion. Restore it before editing."
+        },
+        {
+          "status": "422",
+          "title": "Adding this file would exceed the plan storage limit for this agent."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded."
+        },
+        {
+          "status": "500",
+          "title": "Unhandled server error."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "updateFileSource",
+        "method": "PUT",
+        "path": "/api/v2/agents/{agentId}/sources/{sourceId}",
+        "serverId": "operationCreatefilesourceServer1HttpsFilesChatbaseCo",
+        "request": {
+          "method": "PUT",
+          "url": "=/api/v2/agents/{{$parameter[\"agentId\"]}}/sources/{{$parameter[\"sourceId\"]}}",
+          "query": [],
+          "body": [
+            {
+              "name": "file",
+              "source": "additionalFields"
+            },
+            {
+              "name": "name",
+              "source": "additionalFields"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "createdAt",
+              "type": "string"
+            },
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "metadata",
+              "type": "alternative"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "size",
+              "type": "number"
+            },
+            {
+              "name": "status",
+              "type": "string"
+            },
+            {
+              "name": "type",
+              "type": "string"
+            }
+          ],
+          "simplifiedFields": [
+            "createdAt",
+            "id",
+            "metadata",
+            "name",
+            "size",
+            "status",
+            "type"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "No fields provided, unsupported file type, or a file outside the allowed size range."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present."
+          },
+          {
+            "status": "403",
+            "title": "Standard plan or higher required."
+          },
+          {
+            "status": "404",
+            "title": "Agent or source not found."
+          },
+          {
+            "status": "409",
+            "title": "Source is pending deletion. Restore it before editing."
+          },
+          {
+            "status": "422",
+            "title": "Adding this file would exceed the plan storage limit for this agent."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded."
+          },
+          {
+            "status": "500",
+            "title": "Unhandled server error."
+          }
+        ],
+        "unsupportedSemantics": [
+          "non-json request content"
+        ]
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "updateSource",
+      "method": "PUT",
+      "path": "/agents/{agentId}/sources/{sourceId}",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        },
+        {
+          "name": "sourceId",
+          "inputName": "sourceId",
+          "sample": "a63a69a5-e7a9-4757-b73b-2041854d435d",
+          "example": "a63a69a5-e7a9-4757-b73b-2041854d435d",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "raw",
+        "fields": [
+          {
+            "name": "bodyJson",
+            "inputName": "bodyJson",
+            "sample": {
+              "schemaAlternative": "alternative1",
+              "value": {}
+            },
+            "type": "alternative",
+            "required": false
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "createdAt",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "metadata",
+            "type": "alternative"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "type": "number"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "type": "string"
+          }
+        ],
+        "simplifiedFields": [
+          "createdAt",
+          "id",
+          "metadata",
+          "name",
+          "size",
+          "status",
+          "type"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+        },
+        {
+          "status": "404",
+          "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+        },
+        {
+          "status": "409",
+          "title": "Restore the source before making changes to it."
+        },
+        {
+          "status": "422",
+          "title": "Adding or updating this source would exceed the storage limit for your plan. Remove existing sources or upgrade your plan."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "503",
+          "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "updateSource",
+        "method": "PUT",
+        "path": "/agents/{agentId}/sources/{sourceId}",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "PUT",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/sources/{{$parameter[\"sourceId\"]}}",
+          "query": [],
+          "body": [
+            {
+              "name": "bodyJson",
+              "source": "additionalFields"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "createdAt",
+              "type": "string"
+            },
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "metadata",
+              "type": "alternative"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "size",
+              "type": "number"
+            },
+            {
+              "name": "status",
+              "type": "string"
+            },
+            {
+              "name": "type",
+              "type": "string"
+            }
+          ],
+          "simplifiedFields": [
+            "createdAt",
+            "id",
+            "metadata",
+            "name",
+            "size",
+            "status",
+            "type"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "The request body failed schema validation. Inspect the `details` object in the error response for field-level errors."
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "Your current plan does not include API access. Upgrade to the Standard plan or higher to use the API."
+          },
+          {
+            "status": "404",
+            "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+          },
+          {
+            "status": "409",
+            "title": "Restore the source before making changes to it."
+          },
+          {
+            "status": "422",
+            "title": "Adding or updating this source would exceed the storage limit for your plan. Remove existing sources or upgrade your plan."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "503",
+            "title": "Chatbase is undergoing scheduled maintenance and the API is temporarily rejecting requests. This is transient; retry after a short delay. Requests are rejected before any data is read or written, so no partial changes are applied."
+          }
+        ],
+        "unsupportedSemantics": [
+          "raw or blocked request body",
+          "advanced parameter bodyJson"
+        ]
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "listWhatsAppTemplates",
+      "method": "GET",
+      "path": "/agents/{agentId}/whatsapp/templates",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": []
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "complete",
+            "type": "boolean"
+          },
+          {
+            "name": "senders",
+            "type": "array"
+          },
+          {
+            "name": "templates",
+            "type": "array"
+          },
+          {
+            "name": "unavailableWabaIds",
+            "type": "array"
+          }
+        ],
+        "simplifiedFields": [
+          "complete",
+          "senders",
+          "templates",
+          "unavailableWabaIds"
+        ]
+      },
+      "errors": [
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "The agent exists but has no WhatsApp phone number connected. Connect a number from the deploy page before calling WhatsApp endpoints."
+        },
+        {
+          "status": "404",
+          "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        }
+      ],
+      "requestPlan": {
+        "operationId": "listWhatsAppTemplates",
+        "method": "GET",
+        "path": "/agents/{agentId}/whatsapp/templates",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "GET",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/whatsapp/templates",
+          "query": [],
+          "body": [],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "complete",
+              "type": "boolean"
+            },
+            {
+              "name": "senders",
+              "type": "array"
+            },
+            {
+              "name": "templates",
+              "type": "array"
+            },
+            {
+              "name": "unavailableWabaIds",
+              "type": "array"
+            }
+          ],
+          "simplifiedFields": [
+            "complete",
+            "senders",
+            "templates",
+            "unavailableWabaIds"
+          ]
+        },
+        "errors": [
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "The agent exists but has no WhatsApp phone number connected. Connect a number from the deploy page before calling WhatsApp endpoints."
+          },
+          {
+            "status": "404",
+            "title": "No agent matches the provided `agentId`, or it does not belong to the authenticated account."
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          }
+        ],
+        "unsupportedSemantics": []
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    },
+    {
+      "operationId": "sendWhatsAppTemplateMessage",
+      "method": "POST",
+      "path": "/agents/{agentId}/whatsapp/messages/template",
+      "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+      "authentication": [
+        {
+          "schemes": [
+            "bearerAuth"
+          ],
+          "scopes": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "agentId",
+          "inputName": "agentId",
+          "sample": "5QHA6VB-DIAbBhxwqxfdi",
+          "example": "5QHA6VB-DIAbBhxwqxfdi",
+          "location": "path",
+          "required": true,
+          "arrayFormat": "indices"
+        }
+      ],
+      "request": {
+        "contentType": "application/json",
+        "representation": "structured",
+        "fields": [
+          {
+            "name": "from",
+            "inputName": "from",
+            "sample": "14155552671",
+            "example": "14155552671",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "template",
+            "inputName": "template",
+            "sample": {
+              "name": "order_confirmation"
+            },
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "to",
+            "inputName": "to",
+            "sample": "14155552671",
+            "example": "14155552671",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "retry": {},
+      "pagination": {
+        "style": "none"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "conversationId",
+            "type": "string"
+          },
+          {
+            "name": "messageId",
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "type": "string"
+          }
+        ],
+        "simplifiedFields": [
+          "conversationId",
+          "messageId",
+          "to"
+        ]
+      },
+      "errors": [
+        {
+          "status": "400",
+          "title": "Invalid request"
+        },
+        {
+          "status": "401",
+          "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+        },
+        {
+          "status": "403",
+          "title": "The agent exists but has no WhatsApp phone number connected. Connect a number from the deploy page before calling WhatsApp endpoints."
+        },
+        {
+          "status": "404",
+          "title": "Resource not found"
+        },
+        {
+          "status": "409",
+          "title": "Cannot send in the current state"
+        },
+        {
+          "status": "422",
+          "title": "Unprocessable message"
+        },
+        {
+          "status": "429",
+          "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+        },
+        {
+          "status": "500",
+          "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+        },
+        {
+          "status": "502",
+          "title": "Upstream WhatsApp API failure"
+        }
+      ],
+      "requestPlan": {
+        "operationId": "sendWhatsAppTemplateMessage",
+        "method": "POST",
+        "path": "/agents/{agentId}/whatsapp/messages/template",
+        "serverId": "documentServer1HttpsWwwChatbaseCoApiV2",
+        "request": {
+          "method": "POST",
+          "url": "=/agents/{{$parameter[\"agentId\"]}}/whatsapp/messages/template",
+          "query": [],
+          "body": [
+            {
+              "name": "from",
+              "source": "additionalFields"
+            },
+            {
+              "name": "template",
+              "source": "parameter"
+            },
+            {
+              "name": "to",
+              "source": "parameter"
+            }
+          ],
+          "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        "authentication": [
+          {
+            "schemes": [
+              "bearerAuth"
+            ],
+            "scopes": []
+          }
+        ],
+        "retry": {},
+        "pagination": {
+          "style": "none"
+        },
+        "response": {
+          "fields": [
+            {
+              "name": "conversationId",
+              "type": "string"
+            },
+            {
+              "name": "messageId",
+              "type": "string"
+            },
+            {
+              "name": "to",
+              "type": "string"
+            }
+          ],
+          "simplifiedFields": [
+            "conversationId",
+            "messageId",
+            "to"
+          ]
+        },
+        "errors": [
+          {
+            "status": "400",
+            "title": "Invalid request"
+          },
+          {
+            "status": "401",
+            "title": "No Authorization header present. Provide a valid API key as a Bearer token in the Authorization header: `Authorization: Bearer <api-key>`."
+          },
+          {
+            "status": "403",
+            "title": "The agent exists but has no WhatsApp phone number connected. Connect a number from the deploy page before calling WhatsApp endpoints."
+          },
+          {
+            "status": "404",
+            "title": "Resource not found"
+          },
+          {
+            "status": "409",
+            "title": "Cannot send in the current state"
+          },
+          {
+            "status": "422",
+            "title": "Unprocessable message"
+          },
+          {
+            "status": "429",
+            "title": "Rate limit exceeded. Check the `X-RateLimit-Reset` response header for the Unix epoch seconds when the limit resets."
+          },
+          {
+            "status": "500",
+            "title": "An unhandled server error occurred. If the issue persists, contact support with the `x-request-id` response header value for debugging."
+          },
+          {
+            "status": "502",
+            "title": "Upstream WhatsApp API failure"
+          }
+        ],
+        "unsupportedSemantics": [
+          "advanced parameter template"
+        ]
+      },
+      "assertions": [
+        "retry attempts preserve request and pagination state until a response succeeds",
+        "pagination advances only after a completed page response",
+        "pagination terminates within declared page, item, elapsed-time, memory, repeated-cursor, and repeated-page budgets"
+      ]
+    }
+  ],
+  "triggerFixtures": [
+    {
+      "operationId": "getAgent",
+      "trigger": {
+        "type": "polling",
+        "sourceOperation": "getAgent",
+        "cursorParameter": "createdAt",
+        "defaultPollInterval": "5m"
+      },
+      "assertions": [
+        "polling trigger cursor, advancement, first-poll, empty-result, restart, deduplication, deduplication-retention, state-scope, and item-linking behavior follow the declared Trigger Contract"
+      ]
+    },
+    {
+      "operationId": "listAgents",
+      "trigger": {
+        "type": "polling",
+        "sourceOperation": "listAgents",
+        "cursorParameter": "createdAt",
+        "defaultPollInterval": "5m"
+      },
+      "assertions": [
+        "polling trigger cursor, advancement, first-poll, empty-result, restart, deduplication, deduplication-retention, state-scope, and item-linking behavior follow the declared Trigger Contract"
+      ]
+    },
+    {
+      "operationId": "exportConversations",
+      "trigger": {
+        "type": "polling",
+        "sourceOperation": "exportConversations",
+        "cursorParameter": "updatedAt",
+        "defaultPollInterval": "5m"
+      },
+      "assertions": [
+        "polling trigger cursor, advancement, first-poll, empty-result, restart, deduplication, deduplication-retention, state-scope, and item-linking behavior follow the declared Trigger Contract"
+      ]
+    },
+    {
+      "operationId": "getConversation",
+      "trigger": {
+        "type": "polling",
+        "sourceOperation": "getConversation",
+        "cursorParameter": "updatedAt",
+        "defaultPollInterval": "5m"
+      },
+      "assertions": [
+        "polling trigger cursor, advancement, first-poll, empty-result, restart, deduplication, deduplication-retention, state-scope, and item-linking behavior follow the declared Trigger Contract"
+      ]
+    },
+    {
+      "operationId": "listConversationMessages",
+      "trigger": {
+        "type": "polling",
+        "sourceOperation": "listConversationMessages",
+        "cursorParameter": "createdAt",
+        "defaultPollInterval": "5m"
+      },
+      "assertions": [
+        "polling trigger cursor, advancement, first-poll, empty-result, restart, deduplication, deduplication-retention, state-scope, and item-linking behavior follow the declared Trigger Contract"
+      ]
+    },
+    {
+      "operationId": "listConversations",
+      "trigger": {
+        "type": "polling",
+        "sourceOperation": "listConversations",
+        "cursorParameter": "updatedAt",
+        "defaultPollInterval": "5m"
+      },
+      "assertions": [
+        "polling trigger cursor, advancement, first-poll, empty-result, restart, deduplication, deduplication-retention, state-scope, and item-linking behavior follow the declared Trigger Contract"
+      ]
+    },
+    {
+      "operationId": "listUserConversations",
+      "trigger": {
+        "type": "polling",
+        "sourceOperation": "listUserConversations",
+        "cursorParameter": "updatedAt",
+        "defaultPollInterval": "5m"
+      },
+      "assertions": [
+        "polling trigger cursor, advancement, first-poll, empty-result, restart, deduplication, deduplication-retention, state-scope, and item-linking behavior follow the declared Trigger Contract"
+      ]
+    },
+    {
+      "operationId": "searchConversations",
+      "trigger": {
+        "type": "polling",
+        "sourceOperation": "searchConversations",
+        "cursorParameter": "updatedAt",
+        "defaultPollInterval": "5m"
+      },
+      "assertions": [
+        "polling trigger cursor, advancement, first-poll, empty-result, restart, deduplication, deduplication-retention, state-scope, and item-linking behavior follow the declared Trigger Contract"
+      ]
+    },
+    {
+      "operationId": "getHealth",
+      "trigger": {
+        "type": "polling",
+        "sourceOperation": "getHealth",
+        "cursorParameter": "timestamp",
+        "defaultPollInterval": "5m"
+      },
+      "assertions": [
+        "polling trigger cursor, advancement, first-poll, empty-result, restart, deduplication, deduplication-retention, state-scope, and item-linking behavior follow the declared Trigger Contract"
+      ]
+    },
+    {
+      "operationId": "getTicket",
+      "trigger": {
+        "type": "polling",
+        "sourceOperation": "getTicket",
+        "cursorParameter": "updatedAt",
+        "defaultPollInterval": "5m"
+      },
+      "assertions": [
+        "polling trigger cursor, advancement, first-poll, empty-result, restart, deduplication, deduplication-retention, state-scope, and item-linking behavior follow the declared Trigger Contract"
+      ]
+    },
+    {
+      "operationId": "listHelpdeskTeams",
+      "trigger": {
+        "type": "polling",
+        "sourceOperation": "listHelpdeskTeams",
+        "cursorParameter": "id",
+        "defaultPollInterval": "5m"
+      },
+      "assertions": [
+        "polling trigger cursor, advancement, first-poll, empty-result, restart, deduplication, deduplication-retention, state-scope, and item-linking behavior follow the declared Trigger Contract"
+      ]
+    },
+    {
+      "operationId": "listTicketMessages",
+      "trigger": {
+        "type": "polling",
+        "sourceOperation": "listTicketMessages",
+        "cursorParameter": "createdAt",
+        "defaultPollInterval": "5m"
+      },
+      "assertions": [
+        "polling trigger cursor, advancement, first-poll, empty-result, restart, deduplication, deduplication-retention, state-scope, and item-linking behavior follow the declared Trigger Contract"
+      ]
+    },
+    {
+      "operationId": "listTicketStatuses",
+      "trigger": {
+        "type": "polling",
+        "sourceOperation": "listTicketStatuses",
+        "cursorParameter": "id",
+        "defaultPollInterval": "5m"
+      },
+      "assertions": [
+        "polling trigger cursor, advancement, first-poll, empty-result, restart, deduplication, deduplication-retention, state-scope, and item-linking behavior follow the declared Trigger Contract"
+      ]
+    },
+    {
+      "operationId": "listTickets",
+      "trigger": {
+        "type": "polling",
+        "sourceOperation": "listTickets",
+        "cursorParameter": "updatedAt",
+        "defaultPollInterval": "5m"
+      },
+      "assertions": [
+        "polling trigger cursor, advancement, first-poll, empty-result, restart, deduplication, deduplication-retention, state-scope, and item-linking behavior follow the declared Trigger Contract"
+      ]
+    },
+    {
+      "operationId": "getSource",
+      "trigger": {
+        "type": "polling",
+        "sourceOperation": "getSource",
+        "cursorParameter": "createdAt",
+        "defaultPollInterval": "5m"
+      },
+      "assertions": [
+        "polling trigger cursor, advancement, first-poll, empty-result, restart, deduplication, deduplication-retention, state-scope, and item-linking behavior follow the declared Trigger Contract"
+      ]
+    },
+    {
+      "operationId": "listSources",
+      "trigger": {
+        "type": "polling",
+        "sourceOperation": "listSources",
+        "cursorParameter": "createdAt",
+        "defaultPollInterval": "5m"
+      },
+      "assertions": [
+        "polling trigger cursor, advancement, first-poll, empty-result, restart, deduplication, deduplication-retention, state-scope, and item-linking behavior follow the declared Trigger Contract"
+      ]
+    }
+  ]
+}
